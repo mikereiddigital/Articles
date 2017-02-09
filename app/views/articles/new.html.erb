@@ -1,4 +1,8 @@
 
+<p></p>
+<p>Create a New Article</p>
+<p></p>
+
 <%= form_for :article, url: articles_path do |f| %>
   <p>
     <%= f.label :title %><br>
@@ -15,3 +19,9 @@
   </p>
 <% end %>
 
+<p></p>
+<p>----------</p>
+<p></p>
+
+
+<%= link_to 'Back to Articles List', articles_path %>
