@@ -1,0 +1,59 @@
+[1mdiff --git a/app/controllers/articles_controller.rb b/app/controllers/articles_controller.rb[m
+[1mindex efa6b2f..f877034 100644[m
+[1m--- a/app/controllers/articles_controller.rb[m
+[1m+++ b/app/controllers/articles_controller.rb[m
+[36m@@ -22,6 +22,11 @@[m [mdef new[m
+     @article=Article.new[m
+ end[m
+ [m
+[32m+[m[32mdef edit[m
+[32m+[m[32m    @article = Article.find(params[:id])[m
+[32m+[m[32mend[m
+[32m+[m
+[32m+[m
+ private[m
+   def article_params[m
+     params.require(:article).permit(:title, :text)[m
+[1mdiff --git a/app/views/articles/new.html.erb b/app/views/articles/new.html.erb[m
+[1mindex 4b6b876..c06bcaa 100644[m
+[1m--- a/app/views/articles/new.html.erb[m
+[1m+++ b/app/views/articles/new.html.erb[m
+[36m@@ -1,9 +1,19 @@[m
+[31m-[m
+[31m-<p></p>[m
+[31m-<p>Create a New Article</p>[m
+[31m-<p></p>[m
+[31m-[m
+ <%= form_for :article, url: articles_path do |f| %>[m
+[32m+[m[41m [m
+[32m+[m[32m  <% if @article.errors.any? %>[m
+[32m+[m[32m    <div id="error_explanation">[m
+[32m+[m[32m      <h2>[m
+[32m+[m[32m        <%= pluralize(@article.errors.count, "error") %> prohibited[m
+[32m+[m[32m        this article from being saved:[m
+[32m+[m[32m      </h2>[m
+[32m+[m[32m      <ul>[m
+[32m+[m[32m        <% @article.errors.full_messages.each do |msg| %>[m
+[32m+[m[32m          <li><%= msg %></li>[m
+[32m+[m[32m        <% end %>[m
+[32m+[m[32m      </ul>[m
+[32m+[m[32m    </div>[m
+[32m+[m[32m  <% end %>[m
+[32m+[m[41m [m
+   <p>[m
+     <%= f.label :title %><br>[m
+     <%= f.text_field :title %>[m
+[36m@@ -17,11 +27,7 @@[m
+   <p>[m
+     <%= f.submit %>[m
+   </p>[m
+[32m+[m[41m [m
+ <% end %>[m
+[31m-[m
+[31m-<p></p>[m
+[31m-<p>----------</p>[m
+[31m-<p></p>[m
+[31m-[m
+[31m-[m
+[32m+[m[41m [m
+ <%= link_to 'Back to Articles List', articles_path %>[m
