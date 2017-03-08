@@ -1,12 +1,12 @@
+
+<%= stylesheet_link_tag "style.css" %>
+
 <h1>My Blog!!</h1>
-<p><p/>
-<p><p/> 
- <p>--------------</p>
+
+
  
  <%= link_to 'Create a New Article Here!', new_article_path %>
  
- <p>--------------</p>
- <p><p/>
  
  
  <table>
@@ -22,7 +22,7 @@
       <td><%= link_to article.title, article_path(article) %></td>
       <td><%= article.text %></td>
       <td><%= link_to 'Edit', edit_article_path(article) %></td>
-      <td><%= link_to 'Destroy', article_path(article),
+      <td><%= link_to 'Delete', article_path(article),
               method: :delete,
               data: { confirm: 'Are you sure?' } %></td>
     </tr>
@@ -30,9 +30,6 @@
   
 </table>
 
-<p></p>
-<p>----------</p>
-<p></p>
 
 
 <%= link_to 'Back to the Top!', articles_path %>
